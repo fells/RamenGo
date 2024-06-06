@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ramengo", "ramengo\ramengo.csproj", "{05AAD010-FF97-4013-968A-81825399345C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05AAD010-FF97-4013-968A-81825399345C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05AAD010-FF97-4013-968A-81825399345C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05AAD010-FF97-4013-968A-81825399345C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05AAD010-FF97-4013-968A-81825399345C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D80DCD7D-3744-49D5-A688-C489533E0CF0}
+	EndGlobalSection
+EndGlobal
