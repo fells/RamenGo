@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using ramengo.Models;
+using System.IO;
 
 namespace ramengo.Data
 {
@@ -16,11 +19,16 @@ namespace ramengo.Data
         public DbSet<Order> Orders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql(
+        {
+            var secret = JObject.Parse(File.ReadAllText(@"C:\Users\michel.calil\Desktop\RamenGo\Backend\ramengo\ramengo\.secret.json"));
+            Console.WriteLine(secret.ToString());
+
+            optionsBuilder.UseNpgsql(
                 "Server=localhost;" +
-                "Username=;" + // Place in your Username for the DB
-                "Password=;" + // Place in your Password for the DB
+                $"Username={Convert.ToString(secret["username"])};" + // Place in your Username for the DB
+                $"Password={Convert.ToString(secret["password"])};" + // Place in your Password for the DB
                 "Database=RamenGo;");
+        }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
