@@ -21,7 +21,6 @@ namespace ramengo.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var secret = JObject.Parse(File.ReadAllText(@"C:\Users\michel.calil\Desktop\RamenGo\Backend\ramengo\ramengo\.secret.json"));
-            Console.WriteLine(secret.ToString());
 
             optionsBuilder.UseNpgsql(
                 "Server=localhost;" +

@@ -18,4 +18,5 @@ namespace ramengo.Repository
             return _context.Proteins.OrderBy(p => p.Id).ToList();
         }
 
+    }
 }
