@@ -19,5 +19,15 @@ namespace ramengo.Repository
             await _context.SaveChangesAsync();
             return order;
         }
+
+        public async Task<Broth> GetBrothById(int id)
+        {
+            return await _context.Broths.FindAsync(id);
+        }
+
+        public async Task<Protein> GetProteinById(int id)
+        {
+            return await _context.Proteins.FindAsync(id);
+        }
     }
 }
