@@ -4,6 +4,6 @@ namespace ramengo.Interfaces
 {
     public interface IBrothRepository
     {
-        ICollection<Broth> GetBroths();
+        Task<IEnumerable<Broth>> GetAllBroths();
     }
 }

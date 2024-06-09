@@ -24,7 +24,7 @@ namespace ramengo
             _context.Broths.AddRange(
                 new Broth
                 {
-                    Nome = "Shio",
+                    Name = "Shio",
                     ImageInactive = "https://tech.redventures.com.br/icons/shio/inactive.svg",
                     ImageActive = "https://tech.redventures.com.br/icons/shio/active.svg",
                     Description = "Simple like the seawater, nothing more",
@@ -32,7 +32,7 @@ namespace ramengo
                 },
                 new Broth
                 {
-                    Nome = "Shoyu",
+                    Name = "Shoyu",
                     ImageInactive = "https://tech.redventures.com.br/icons/shoyu/inactive.svg",
                     ImageActive = "https://tech.redventures.com.br/icons/shoyu/active.svg",
                     Description = "A rich soy sauce base",
@@ -40,7 +40,7 @@ namespace ramengo
                 },
                 new Broth
                 {
-                    Nome = "Miso",
+                    Name = "Miso",
                     ImageInactive = "https://tech.redventures.com.br/icons/miso/inactive.svg",
                     ImageActive = "https://tech.redventures.com.br/icons/miso/active.svg",
                     Description = "Fermented soybean paste",
@@ -51,7 +51,7 @@ namespace ramengo
             _context.Proteins.AddRange(
                 new Protein
                 {
-                    Nome = "Chashu",
+                    Name = "Chashu",
                     ImageInactive = "https://tech.redventures.com.br/icons/chashu/inactive.svg",
                     ImageActive = "https://tech.redventures.com.br/icons/chashu/active.svg",
                     Description = "A sliced flavourful pork meat with a selection of seasoned vegetables.",
@@ -59,7 +59,7 @@ namespace ramengo
                 },
                 new Protein
                 {
-                    Nome = "Tofu",
+                    Name = "Tofu",
                     ImageInactive = "https://tech.redventures.com.br/icons/tofu/inactive.svg",
                     ImageActive = "https://tech.redventures.com.br/icons/tofu/active.svg",
                     Description = "Soft tofu pieces",
@@ -67,7 +67,7 @@ namespace ramengo
                 },
                 new Protein
                 {
-                    Nome = "Chicken",
+                    Name = "Chicken",
                     ImageInactive = "https://tech.redventures.com.br/icons/chicken/inactive.svg",
                     ImageActive = "https://tech.redventures.com.br/icons/chicken/active.svg",
                     Description = "Grilled chicken breast",

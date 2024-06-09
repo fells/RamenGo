@@ -29,19 +29,5 @@ namespace ramengo.Data
                 "Database=RamenGo;");
         }
 
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Order>()
-                .HasOne(p => p.Broth)
-                .WithMany()
-                .HasForeignKey(p => p.BrothId);
-
-            modelBuilder.Entity<Order>()
-                .HasOne(p => p.Protein)
-                .WithMany()
-                .HasForeignKey(p => p.ProteinId);
-        }
-
     }
 }

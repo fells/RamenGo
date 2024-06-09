@@ -4,6 +4,6 @@ namespace ramengo.Interfaces
 {
     public interface IProteinRepository
     {
-        ICollection<Protein> GetProtein();
+        Task<IEnumerable<Protein>> GetAllProteins();
     }
 }

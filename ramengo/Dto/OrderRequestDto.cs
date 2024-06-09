@@ -1,8 +1,7 @@
-﻿namespace ramengo.Models
+﻿namespace ramengo.Dto
 {
-    public class Order
+    public class OrderRequestDto
     {
-        public int Id { get; set; }
         public int BrothId { get; set; }
         public int ProteinId { get; set; }
     }

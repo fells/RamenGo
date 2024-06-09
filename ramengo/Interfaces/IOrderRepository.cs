@@ -4,6 +4,6 @@ namespace ramengo.Interfaces
 {
     public interface IOrderRepository
     {
-        Task<Order> CreateOrderAsync(Order order);
+        Task<Order> PlaceOrder(Order order);
     }
 }

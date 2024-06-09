@@ -25,19 +25,11 @@ namespace ramengo.Controllers
         }
 
         [HttpGet]
-        [SwaggerOperation(Summary = "Get all broths", Description = "A list of all available broths")]
-        [SwaggerResponse(200, "A list of broths")]
-        [SwaggerResponse(403, "Forbidden")]
-        public async Task<ActionResult<IEnumerable<BrothDto>>> GetBroths([FromHeader(Name = "x-api-key")] string apiKey, IBrothRepository _brothRepository)
+        public async Task<ActionResult<IEnumerable<BrothDto>>> GetBroths()
         {
-            if (string.IsNullOrEmpty(apiKey))
-            {
-                return StatusCode(403, new { error = "x-api-key header missing" });
-            }
-
-            var broths = _brothRepository.GetBroths();
-            var brothDtos = _mapper.Map<IEnumerable<BrothDto>>(broths);
-            return Ok(brothDtos);
+            var broths = await _brothRepository.GetAllBroths();
+            var brothsDto = _mapper.Map<IEnumerable<BrothDto>>(broths);
+            return Ok(brothsDto);
         }
 
     }

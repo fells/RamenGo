@@ -10,14 +10,14 @@ namespace ramengo.Repository
     {
         private readonly DataContext _context;
 
-        public BrothRepository(DataContext context)   // Created a constructor that receives a ConnectionContext parameter
+        public BrothRepository(DataContext context) 
         {
             this._context = context;
         }
 
-        public ICollection<Broth> GetBroths()
+        public async Task<IEnumerable<Broth>> GetAllBroths()
         {
-            return _context.Broths.OrderBy(b => b.Id).ToList();
+            return await _context.Broths.ToListAsync();
         }
     }
 }

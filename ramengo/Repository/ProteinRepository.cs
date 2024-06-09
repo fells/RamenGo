@@ -1,4 +1,5 @@
-﻿using ramengo.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ramengo.Data;
 using ramengo.Interfaces;
 using ramengo.Models;
 
@@ -13,9 +14,9 @@ namespace ramengo.Repository
             _context = context;
         }
 
-        public ICollection<Protein> GetProtein()
+        public async Task<IEnumerable<Protein>> GetAllProteins()
         {
-            return _context.Proteins.OrderBy(p => p.Id).ToList();
+            return await _context.Proteins.ToListAsync();
         }
 
     }

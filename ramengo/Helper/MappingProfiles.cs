@@ -8,8 +8,10 @@ namespace ramengo.Helper
     {
         public MappingProfiles() 
         {
-            CreateMap<Broth, BrothDto>();
-            CreateMap<Protein, ProteinDto>();
+            CreateMap<Broth, BrothDto>().ReverseMap();
+            CreateMap<Protein, ProteinDto>().ReverseMap();
+            CreateMap<Order, OrderRequestDto>().ReverseMap();
+            CreateMap<Order, OrderResponseDto>().ReverseMap();
         }
     }
 }
