@@ -1,5 +1,6 @@
 using ramengo;
 using ramengo.Data;
+using ramengo.Helper;
 using ramengo.Interfaces;
 using ramengo.Repository;
 
@@ -15,6 +16,14 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IBrothRepository, BrothRepository>();
 builder.Services.AddScoped<IProteinRepository, ProteinRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddSingleton<HttpClient>(sp =>
+{
+    var httpClientHandler = new HttpClientHandler();
+    httpClientHandler.AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate;
+
+    return new HttpClient(httpClientHandler);
+});
+builder.Services.AddScoped<OrderIdService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
