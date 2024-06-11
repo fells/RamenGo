@@ -1,4 +1,4 @@
-const apiKey = 'YOUR_API_KEY_HERE';
+const apiKey = 'YOUR_API_KEY';
 const apiBaseUrl = 'https://localhost:7291'; // Certifique-se de que esta URL está correta
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -65,7 +65,6 @@ async function placeOrder() {
         alert('Please select both a broth and a protein!');
         return;
     }
-
     const orderRequest = {
         brothId: selectedBroth.dataset.id,
         proteinId: selectedProtein.dataset.id
@@ -86,7 +85,6 @@ async function placeOrder() {
         const orderResponse = await response.json();
         alert(`Order placed successfully! Your order ID is ${orderResponse.id}`);
     } catch (error) {
-        console.error('Failed to place order:', error);
         alert('Failed to place order. Please try again.');
     }
 }

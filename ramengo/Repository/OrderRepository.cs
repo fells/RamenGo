@@ -1,4 +1,5 @@
 ﻿using ramengo.Data;
+using ramengo.Helper;
 using ramengo.Interfaces;
 using ramengo.Models;
 
@@ -6,28 +7,32 @@ namespace ramengo.Repository
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly DataContext _context;
+        private readonly OrderIdService _orderIdService = new OrderIdService(new HttpClient());
+        
 
-        public OrderRepository(DataContext context)
+        public void OrderReporsitory()
         {
-            _context = context;
+            System.Diagnostics.Debug.WriteLine("Instanciado");
         }
 
         public async Task<Order> PlaceOrder(Order order)
         {
-            _context.Orders.Add(order);
-            await _context.SaveChangesAsync();
+            var orderId = await _orderIdService.GenerateOrderIdAsync();
+            var localStorage = DataContext.localStorage;
+            localStorage.Add(Convert.ToString(orderId), (object)order);
             return order;
         }
 
         public async Task<Broth> GetBrothById(int id)
         {
-            return await _context.Broths.FindAsync(id);
+            var x = DataContext.localStorage[Convert.ToString(id)];
+            return (Broth) x;
         }
 
         public async Task<Protein> GetProteinById(int id)
         {
-            return await _context.Proteins.FindAsync(id);
+            var x = DataContext.localStorage[Convert.ToString(id)];
+            return (Protein) x;
         }
     }
 }

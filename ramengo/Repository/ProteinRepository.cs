@@ -7,16 +7,10 @@ namespace ramengo.Repository
 {
     public class ProteinRepository : IProteinRepository
     {
-        private readonly DataContext _context;
-
-        public ProteinRepository(DataContext context)
-        {
-            _context = context;
-        }
-
         public async Task<IEnumerable<Protein>> GetAllProteins()
         {
-            return await _context.Proteins.ToListAsync();
+            var localStorage = DataContext.localStorage.Where(pair => pair.Value is Protein).Select(pair => (Protein)pair.Value);
+            return localStorage;
         }
 
     }
