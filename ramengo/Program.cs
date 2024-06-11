@@ -1,9 +1,14 @@
 using Microsoft.Extensions.FileProviders;
-using ramengo;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using ramengo.Data;
 using ramengo.Helper;
 using ramengo.Interfaces;
 using ramengo.Repository;
+using ramengo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +47,7 @@ void SeedData(IHost app)
     {
         var services = scope.ServiceProvider;
         var seed = services.GetRequiredService<Seed>();
-        seed.Initialize(); // Chama o método Initialize da classe Seed
+        seed.Initialize(); // Chama o m todo Initialize da classe Seed
     }
 }
 
@@ -62,5 +67,27 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Serve the static website from port 8080
+app.Map("/static", staticApp =>
+{
+    staticApp.UseStaticFiles();
+    staticApp.UseDefaultFiles();
+    staticApp.UseRouting();
+    staticApp.UseEndpoints(endpoints =>
+    {
+        endpoints.MapFallbackToFile("index.html");
+    });
+});
+
+// Serve Swagger UI from port 8081
+app.Map("/swagger", swaggerApp =>
+{
+    swaggerApp.UseSwagger();
+    swaggerApp.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
+});
 
 app.Run();

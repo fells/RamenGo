@@ -26,6 +26,13 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\app.js" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\styles.css" />
   </ItemGroup>
 
 </Project>
