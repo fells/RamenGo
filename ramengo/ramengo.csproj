@@ -24,15 +24,21 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.6.2" />
     <PackageReference Include="System.Runtime.Caching" Version="8.0.0" />
   </ItemGroup>
-
+	
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+	 <Content Include="wwwroot\\." />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\app.js" />
-    <None Include="wwwroot\index.html" />
-    <None Include="wwwroot\styles.css" />
+    <Content Update="wwwroot\app.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\styles.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

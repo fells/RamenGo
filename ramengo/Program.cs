@@ -12,6 +12,8 @@ using ramengo;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://localhost:5136", "https://localhost:7291");
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -19,16 +21,6 @@ builder.Services.AddScoped<IBrothRepository, BrothRepository>();
 builder.Services.AddScoped<IProteinRepository, ProteinRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddHttpClient<OrderIdService>();
-
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.WithOrigins("http://127.0.0.1:5500")
-               .AllowAnyHeader()
-               .AllowAnyMethod();
-    });
-});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
