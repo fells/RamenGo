@@ -27,8 +27,13 @@ namespace ramengo.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<OrderResponseDto>> PlaceOrder([FromBody] OrderRequestDto orderRequestDto)
+        public async Task<ActionResult<OrderResponseDto>> PlaceOrder([FromHeader(Name = "x-api-key")] string apiKey, [FromBody] OrderRequestDto orderRequestDto)
         {
+            if (string.IsNullOrEmpty(apiKey))
+            {
+                return Forbid("x-api-key header missing");
+            }
+
             if (orderRequestDto.BrothId == 0 || orderRequestDto.ProteinId == 0)
             {
                 return BadRequest(new { error = "both brothId and proteinId are required" });

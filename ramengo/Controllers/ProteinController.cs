@@ -20,8 +20,13 @@ namespace ramengo.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProteinDto>>> GetProteins()
+        public async Task<ActionResult<IEnumerable<ProteinDto>>> GetProteins([FromHeader(Name = "x-api-key")] string apiKey)
         {
+            if (string.IsNullOrEmpty(apiKey))
+            {
+                return Forbid("x-api-key header missing");
+            }
+
             var proteins = await _proteinRepository.GetAllProteins();
             var proteinsDto = _mapper.Map<IEnumerable<ProteinDto>>(proteins);
             return Ok(proteinsDto);

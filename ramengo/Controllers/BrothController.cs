@@ -25,8 +25,13 @@ namespace ramengo.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BrothDto>>> GetBroths()
+        public async Task<IActionResult> GetAllBroths([FromHeader(Name = "x-api-key")] string apiKey)
         {
+            if (string.IsNullOrEmpty(apiKey))
+            {
+                return Forbid("x-api-key header missing"); // Retorna 403 Forbidden sem um corpo de mensagem
+            }
+
             var broths = await _brothRepository.GetAllBroths();
             var brothsDto = _mapper.Map<IEnumerable<BrothDto>>(broths);
             return Ok(brothsDto);
