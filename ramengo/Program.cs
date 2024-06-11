@@ -12,7 +12,7 @@ using ramengo;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:5136", "https://localhost:7291");
+builder.WebHost.UseUrls("https://localhost:5136", "https://localhost:7291");
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -28,12 +28,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseRouting();
