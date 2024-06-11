@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace ramengo.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class OrderController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;

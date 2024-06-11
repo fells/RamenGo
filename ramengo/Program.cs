@@ -1,14 +1,13 @@
+using Microsoft.Extensions.FileProviders;
 using ramengo;
 using ramengo.Data;
 using ramengo.Helper;
 using ramengo.Interfaces;
 using ramengo.Repository;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
@@ -16,14 +15,17 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IBrothRepository, BrothRepository>();
 builder.Services.AddScoped<IProteinRepository, ProteinRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddSingleton<HttpClient>(sp =>
-{
-    var httpClientHandler = new HttpClientHandler();
-    httpClientHandler.AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate;
+builder.Services.AddHttpClient<OrderIdService>();
 
-    return new HttpClient(httpClientHandler);
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://127.0.0.1:5500")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
 });
-builder.Services.AddScoped<OrderIdService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -52,6 +54,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors();
 
 app.UseAuthorization();
 
